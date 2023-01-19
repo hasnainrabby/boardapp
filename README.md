@@ -6,12 +6,12 @@ A Community based Flutter project.
 
 This project is a starting point for a Flutter application using Firebase Cloud Firestore.
 
-##Set Up
+## Set Up
 - Creating Firebase project & adding Android App.
 - Adding dependency as shown in Firebase console on our Android Studio project.
 - Adding cloud_Firestore & firebase_core on pubspac.yaml.
 
-##Development
+## Development
 - In main function, Initilize our App using Firebase.initilizeApp()
 - Using Stream builder,showing our Firestore Data. 
 
