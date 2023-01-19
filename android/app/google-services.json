@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1063207258048",
+    "project_id": "flutterboardapp-9d7ba",
+    "storage_bucket": "flutterboardapp-9d7ba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1063207258048:android:435ad0b8a4d42a41e62a25",
+        "android_client_info": {
+          "package_name": "com.example.boardapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1063207258048-o7ine3h11onccl2ospe8ivp9n9dfl0eo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTqQqa3EjG-YosCsxjlVc0UHYfA6kS70I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1063207258048-o7ine3h11onccl2ospe8ivp9n9dfl0eo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
