@@ -11,14 +11,29 @@ class BoardApp extends StatefulWidget {
 }
 
 class _BoardAppState extends State<BoardApp> {
+  var firestoreDb = FirebaseFirestore.instance.collection("boardappdatabasecollection#1").snapshots(); //access data from firestore
+  late TextEditingController nameInputController;
+  late TextEditingController titleInputController;
+  late TextEditingController descriptionInputController;
 
-  var firestoreDb = FirebaseFirestore.instance.collection("boardappdatabasecollection#1").snapshots();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    nameInputController = TextEditingController();
+    titleInputController = TextEditingController();
+    descriptionInputController = TextEditingController();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Community Board"),
       ),
+      floatingActionButton: FloatingActionButton(onPressed: (){
+       _showDialog(context);
+      },
+      child: Icon(Icons.add_box_sharp),),
       body: StreamBuilder(
           stream: firestoreDb,
           builder: (context,AsyncSnapshot<QuerySnapshot> snapshot){
@@ -31,7 +46,7 @@ class _BoardAppState extends State<BoardApp> {
             return ListView.builder(
               itemCount: snapshot.data!.docs.length,
               itemBuilder: (BuildContext context, int index) {
-                return Text(snapshot.data!.docs[index]['title']);
+                return Text(snapshot.data!.docs[index]['title']);  //showing data on apps
               },
             );
 
@@ -40,6 +55,61 @@ class _BoardAppState extends State<BoardApp> {
             );
 
       }
+
+   _showDialog(BuildContext context) async {
+    await showDialog(context: context,
+      builder: (BuildContext context) {
+
+      return AlertDialog(
+        contentPadding: EdgeInsets.all(10),
+        content: Column(
+          children: [
+            Text("Please fill out the Form."),
+            Expanded(
+                child: TextField(
+              autofocus: true,
+              autocorrect: true,
+              decoration: InputDecoration(
+                label: Text("Your Name*")
+              ),
+              controller: nameInputController,
+            )),
+            Expanded(
+                child: TextField(
+                  autofocus: true,
+                  autocorrect: true,
+                  decoration: InputDecoration(
+                      label: Text("Title*")
+                  ),
+                  controller: titleInputController,
+                )),
+            Expanded(
+                child: TextField(
+                  autofocus: true,
+                  autocorrect: true,
+                  decoration: InputDecoration(
+                      label: Text("description*")
+                  ),
+                  controller: descriptionInputController,
+                ))
+          ],
+        ),
+        actions: [
+          TextButton(onPressed:() {
+            nameInputController.clear();
+            titleInputController.clear();
+            descriptionInputController.clear();
+            
+            Navigator.pop(context);
+          }, 
+              child:Text("Cancel")),
+          TextButton(onPressed: (){},
+              child: Text("Save"))
+        ],
+      );
+    },
+        );
+  }
 
   }
 
