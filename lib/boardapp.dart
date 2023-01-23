@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 
 class BoardApp extends StatefulWidget {
 
@@ -103,7 +103,27 @@ class _BoardAppState extends State<BoardApp> {
             Navigator.pop(context);
           }, 
               child:Text("Cancel")),
-          TextButton(onPressed: (){},
+          //save data on firestore from app
+          TextButton(onPressed: (){
+            if(nameInputController.text.isNotEmpty &&
+            titleInputController.text.isNotEmpty &&
+            descriptionInputController.text.isNotEmpty){
+              FirebaseFirestore.instance.collection("boardappdatabasecollection#1")
+                  .add({
+                "name" : nameInputController.text,
+                "title" : titleInputController.text,
+                "description" : descriptionInputController.text,
+                "timestamp" : DateTime.now()
+              }).then((value){
+                print(value.id);
+                Navigator.pop(context);
+                nameInputController.clear();
+                titleInputController.clear();
+                descriptionInputController.clear();
+              }).catchError((error) => print("error"));
+            }
+
+          },
               child: Text("Save"))
         ],
       );
