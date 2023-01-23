@@ -1,3 +1,4 @@
+import 'package:boardapp/ui/custom_card.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -44,9 +45,12 @@ class _BoardAppState extends State<BoardApp> {
               return Text("Loading");
             }
             return ListView.builder(
+              shrinkWrap: true,
               itemCount: snapshot.data!.docs.length,
               itemBuilder: (BuildContext context, int index) {
-                return Text(snapshot.data!.docs[index]['title']);  //showing data on apps
+                return CustomCard(snapshot: snapshot.requireData, index: index);
+               // return CustomCard(snapshot:snapshot.data, index: index);
+               // return Text(snapshot.data!.docs[index]['title']);  //showing data on apps
               },
             );
 
