@@ -42,7 +42,7 @@ class _BoardAppState extends State<BoardApp> {
               return CircularProgressIndicator();
             }
             if(snapshot.connectionState == ConnectionState.waiting){
-              return Text("Loading");
+              return Text("Loading...");
             }
             return ListView.builder(
               shrinkWrap: true,
